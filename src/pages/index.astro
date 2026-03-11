@@ -1,0 +1,49 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>Hi, I'm <span class="name">Your Name</span></h1>
+				<p class="tagline">
+					Software developer, writer, and lifelong learner. Welcome to my corner of the internet.
+				</p>
+			</section>
+
+			<section class="intro">
+				<p>
+					I build things for the web and write about what I learn along the way.
+					Check out my <a href="/blog">blog</a> for articles or take a look at
+					my <a href="/cv">CV</a> to learn more about my background.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero {
+		padding: 2em 0;
+	}
+	.name {
+		color: var(--accent);
+	}
+	.tagline {
+		font-size: 1.2em;
+		color: rgb(var(--gray));
+	}
+	.intro {
+		padding: 1em 0;
+	}
+</style>
