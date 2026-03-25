@@ -1,9 +1,13 @@
 ---
+import { useTranslations, type Lang } from '../i18n/utils';
+
 const today = new Date();
+const lang = Astro.currentLocale as Lang;
+const t = useTranslations(lang);
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Lucas David Traverso. All rights reserved.
+	&copy; {today.getFullYear()} Lucas David Traverso. {t('footer.rights')}
 	<div class="social-links">
 		<a href="https://github.com/ludat" target="_blank">
 			<span class="sr-only">GitHub</span>

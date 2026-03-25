@@ -1,0 +1,18 @@
+---
+import { getEntry, render } from 'astro:content';
+import { languages } from '../../i18n/ui';
+import type { Lang } from '../../i18n/utils';
+import Page from '../../layouts/Page.astro';
+
+export function getStaticPaths() {
+	return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.currentLocale as Lang;
+const page = await getEntry('pages', `about/${locale}`)!;
+const { Content } = await render(page);
+---
+
+<Page title={page.data.title} description={page.data.description}>
+	<Content />
+</Page>

@@ -1,0 +1,13 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+	href: string;
+}
+
+const lang = Astro.currentLocale as Lang;
+const { href } = Astro.props;
+---
+
+<a href={getRelativeLocaleUrl(lang, href)}><slot /></a>

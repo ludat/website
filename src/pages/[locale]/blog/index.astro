@@ -1,0 +1,10 @@
+---
+import { languages } from '../../../i18n/ui';
+import BlogList from '../../../layouts/BlogList.astro';
+
+export function getStaticPaths() {
+	return Object.keys(languages).map((locale) => ({ params: { locale } }));
+}
+---
+
+<BlogList />
