@@ -2,13 +2,14 @@
 import { languages, getAlternateUrl, type Lang } from '../i18n/utils';
 
 const lang = Astro.currentLocale as Lang;
+const alternateUrls = Astro.locals.alternateUrls as Record<string, string> | undefined;
 ---
 
 <div class="language-picker">
 	{Object.entries(languages).map(([code, name]) =>
 		code === lang
 			? <span class="current-lang">{code.toUpperCase()}</span>
-			: <a href={getAlternateUrl(Astro.url, code as Lang).pathname}>{code.toUpperCase()}</a>
+			: <a href={alternateUrls ? alternateUrls[code] : getAlternateUrl(Astro.url, code as Lang).pathname}>{code.toUpperCase()}</a>
 	)}
 </div>
 <style>

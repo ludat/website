@@ -1,24 +1,41 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const pages = await getCollection('blog');
+  const allPosts = await getCollection('blog');
 
-  const paths = pages.map(page => {
+  const paths = allPosts.map(page => {
     const slashIndex = page.id.lastIndexOf('/');
-    const slug = page.id.substring(0, slashIndex);
-    const locale = page.id.substring(slashIndex);
-    return { params: { locale, slug }, props: page };
+    const dirName = page.id.substring(0, slashIndex);
+    const locale = page.id.substring(slashIndex + 1);
+
+    // Find sibling posts (same directory, different locale) for alternate URLs
+    const alternateUrls: Record<string, string> = {};
+    for (const sibling of allPosts) {
+      const sibSlashIndex = sibling.id.lastIndexOf('/');
+      const sibDir = sibling.id.substring(0, sibSlashIndex);
+      const sibLocale = sibling.id.substring(sibSlashIndex + 1);
+      if (sibDir === dirName) {
+        alternateUrls[sibLocale] = getRelativeLocaleUrl(sibLocale, `/blog/${sibling.data.urlSlug}/`);
+      }
+    }
+
+    return {
+      params: { locale, slug: page.data.urlSlug },
+      props: { post: page, alternateUrls },
+    };
   });
 
   return paths;
 }
 
-const post = Astro.props;
+const { post, alternateUrls } = Astro.props;
+Astro.locals.alternateUrls = alternateUrls;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} alternateUrls={alternateUrls}>
 	<Content />
 </BlogPost>

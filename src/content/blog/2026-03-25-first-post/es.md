@@ -1,7 +1,7 @@
 ---
 title: 'Primer post'
 description: 'Post describiendo mis intenciones con este blog'
-pubDate: '2026-03-25'
+urlSlug: 'primer-post'
 ---
 
 Estoy tratando de escribir mas contenido aunque sea algo pequeño para mantener

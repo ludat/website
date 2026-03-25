@@ -12,12 +12,13 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	alternateUrls?: Record<string, string>;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const lang = Astro.currentLocale as Lang;
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = FallbackImage, alternateUrls } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -42,10 +43,22 @@ const { title, description, image = FallbackImage } = Astro.props;
 <link rel="canonical" href={canonicalURL} />
 
 <!-- hreflang tags -->
-{Object.keys(languages).map((l) => (
-	<link rel="alternate" hreflang={l} href={getAlternateUrl(Astro.url, l as Lang).href} />
-))}
-<link rel="alternate" hreflang="x-default" href={getAlternateUrl(Astro.url, defaultLang).href} />
+{alternateUrls
+	? <>
+		{Object.entries(alternateUrls).map(([l, url]) => (
+			<link rel="alternate" hreflang={l} href={new URL(url, Astro.site).href} />
+		))}
+		{alternateUrls[defaultLang] && (
+			<link rel="alternate" hreflang="x-default" href={new URL(alternateUrls[defaultLang], Astro.site).href} />
+		)}
+	</>
+	: <>
+		{Object.keys(languages).map((l) => (
+			<link rel="alternate" hreflang={l} href={getAlternateUrl(Astro.url, l as Lang).href} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={getAlternateUrl(Astro.url, defaultLang).href} />
+	</>
+}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
