@@ -9,7 +9,7 @@ export function getStaticPaths() {
 }
 
 const locale = Astro.currentLocale as Lang;
-const page = await getEntry('pages', `index/${locale}`);
+const page = await getEntry('pages', `index/${locale}`)!;
 const { Content } = await render(page);
 ---
 

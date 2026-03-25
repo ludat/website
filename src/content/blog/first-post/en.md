@@ -1,8 +1,8 @@
 ---
 title: 'First post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 08 2022'
+description: 'Post explaining my intentions with this blog'
+pubDate: '2026-03-25'
 ---
 
-English post
-
+I'm trying to write some more content even if small to keep myself creating
+content.

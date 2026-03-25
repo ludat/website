@@ -1,7 +1,8 @@
 ---
-title: '[ES] First post'
-description: '[ES] Lorem ipsum dolor sit amet'
-pubDate: 'Jul 08 2022'
+title: 'Primer post'
+description: 'Post describiendo mis intenciones con este blog'
+pubDate: '2026-03-25'
 ---
 
-[ES] TODO: Translate this blog post.
+Estoy tratando de escribir mas contenido aunque sea algo pequeño para mantener
+algun tipo de escritura en mi vida.

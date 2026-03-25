@@ -1,46 +1,12 @@
 ---
 title: About Me
-description: Lorem ipsum dolor sit amet
+description: Self-taught developer with 14+ years of experience, passionate about correct software, DevOps, and technical challenges.
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+I'm a **self-taught developer** with over 14 years of experience writing software across a wide variety of programming languages. I'm passionate about learning new things and tackling **technical challenges** that force me to think differently.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-massa massa ultricies mi.
+I believe strongly in writing **correct software**: not just code that works, but code that is robust, predictable, and that you can reason about with confidence. I'm interested in exploring tools and techniques that allow us to build better.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+On the **infrastructure** side, I'm equally passionate. After more than 20 years using **Linux** and participating in the **open source** world, I maintain my own **Kubernetes** cluster where I deploy personal projects, and I genuinely enjoy putting things into **production**. The intersection between development and operations, understanding how code lives and breathes in a real environment, is something that deeply motivates me. As an **SRE**, I like things to work well, reliably, and to be able to sleep at night.
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-cursus metus aliquam eleifend mi.
-
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+Outside of code, I enjoy playing music and football. Football to me is a reflection of people's personality: how they move, how they decide, how they react under pressure. I enjoy the challenge of understanding which role I can take on so the team works better.
