@@ -17,7 +17,7 @@ crear issues y pull requests.
 En un rapido googleo no encontre ningún ejemplo de renovate usando los tokens
 efimeros de github actions (que sea crean por cada corrida).
 
-## Cuando?
+## Cuando
 
 Primero quiero que esto corra una vez por semana, entonces usamos el trigger de
 cron de github actions (podés usar [crontab guru](https://crontab.guru/) para
@@ -36,7 +36,7 @@ on:
   workflow_dispatch:
 ```
 
-## Quién?
+## Quién
 
 El token de github actions tiene muy pocos permisos para correr renovate, así
 que tenemos que darle algunos.
@@ -58,7 +58,7 @@ Acá depende de que queremos que haga renovate pero:
 - `pull-requests`: Si queremos que renovate cree PRs por si solo.
 - `issues`: Para que renovate maneje su propio dashboard.
 
-## Que?
+## Que
 
 Finalmente tenemos que pasarle el token de github actions a la action de
 renovate.
@@ -79,6 +79,14 @@ jobs:
 Notese que hay que decirle el nombre del repo sobre el que queremos que trabaje
 porque renovate corre en un container así que no tiene acceso al repo. Pero
 igual necesitamos checkout para conseguir la configuración de renovate.
+
+## Detalle para crear PRs
+
+Finalmente si queremos que renovate tenga la capacidad de crear PRs tenemos que
+habilitarlo en los settings del proyecto, por ejemplo:
+https://github.com/USUARIO/REPOSITORIO/settings/actions ahí luego necesitamos
+ir a la sección `Workflow permissions` y habilitar
+`Allow GitHub Actions to create and approve pull requests`.
 
 ## Debug
 

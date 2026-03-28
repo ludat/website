@@ -17,7 +17,7 @@ create issues and pull requests.
 In a quick google search I couldn't find any example of renovate using the
 ephemeral github actions tokens (which are created for each run).
 
-## When?
+## When
 
 First I want this to run once a week, so we use the github actions cron trigger
 (you can use [crontab guru](https://crontab.guru/) for the syntax).
@@ -35,7 +35,7 @@ on:
   workflow_dispatch:
 ```
 
-## Who?
+## Who
 
 The github actions token has very few permissions to run renovate, so we need to
 give it some.
@@ -56,7 +56,7 @@ Here it depends on what we want renovate to do but:
 - `pull-requests`: If we want renovate to create PRs on its own.
 - `issues`: So renovate can manage its own dashboard.
 
-## What?
+## What
 
 Finally we need to pass the github actions token to the renovate action.
 
@@ -91,6 +91,13 @@ jobs:
           LOG_LEVEL: 'debug'
 ```
 
+## One last detail for PRs
+
+Finally if we want renovate to be able to create PRs we need to allow it on the
+project settings, for example: 
+https://github.com/USER/REPOSITORY/settings/actions. There we need to go to the
+section `Workflow permissions` and enable
+`Allow GitHub Actions to create and approve pull requests`.
 
 ## TLDR
 
