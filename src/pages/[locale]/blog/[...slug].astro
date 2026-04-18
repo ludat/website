@@ -4,7 +4,9 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const blogPosts = await getCollection('blog');
+  const draftPosts = await getCollection('drafts');
+  const allPosts = [...blogPosts, ...draftPosts];
 
   const paths = allPosts.map(page => {
     const slashIndex = page.id.lastIndexOf('/');
