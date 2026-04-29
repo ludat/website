@@ -1,40 +1,40 @@
 ---
 interface Props {
-	tags: string[];
+  tags: string[];
 }
 
 const { tags } = Astro.props;
 ---
 
 <div class="cv-tags">
-	{tags.map(tag => (
-		<span class="cv-tag">{tag}</span>
-	))}
+  {tags.map(tag => (
+    <span class="cv-tag">{tag}</span>
+  ))}
 </div>
 
 <style>
-	.cv-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 6px;
-		margin-top: 4px;
-		margin-bottom: 14px;
-	}
+  .cv-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    margin-bottom: 14px;
+  }
 
-	.cv-tag {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 10px;
-		padding: 3px 8px;
-		background: var(--cv-bg-surface);
-		border: 1px solid var(--cv-border);
-		color: var(--cv-text-muted);
-		letter-spacing: 0.04em;
-		border-radius: 2px;
-		transition: color 0.2s, border-color 0.2s;
-	}
+  .cv-tag {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--cv-bg-surface);
+    border: 1px solid var(--cv-border);
+    color: var(--cv-text-muted);
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
 
-	.cv-tag:hover {
-		color: var(--cv-accent);
-		border-color: var(--cv-accent-dim);
-	}
+  .cv-tag:hover {
+    color: var(--cv-accent);
+    border-color: var(--cv-accent-dim);
+  }
 </style>

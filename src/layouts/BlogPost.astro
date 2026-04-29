@@ -9,7 +9,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { useTranslations, type Lang } from '../i18n/utils';
 
 type Props = CollectionEntry<'blog'>['data'] & {
-	alternateUrls?: Record<string, string>;
+  alternateUrls?: Record<string, string>;
 };
 
 const { title, description, pubDate, updatedDate, heroImage, tags, alternateUrls } = Astro.props;
@@ -18,309 +18,309 @@ const t = useTranslations(lang);
 ---
 
 <html lang={lang} data-theme="dark">
-	<head>
-		<BaseHead title={title} description={description} alternateUrls={alternateUrls} />
-	</head>
-	<body>
-		<Navbar activePath="/blog" />
+  <head>
+    <BaseHead title={title} description={description} alternateUrls={alternateUrls} />
+  </head>
+  <body>
+    <Navbar activePath="/blog" />
 
-		<div class="bp-layout">
-			<!-- Left sidebar -->
-			<aside class="bp-sidebar-left">
-				<a class="bp-back-link" href={getRelativeLocaleUrl(lang, '/blog')}>
-					<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-					{t('blog.post.allPosts')}
-				</a>
+    <div class="bp-layout">
+      <!-- Left sidebar -->
+      <aside class="bp-sidebar-left">
+        <a class="bp-back-link" href={getRelativeLocaleUrl(lang, '/blog')}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          {t('blog.post.allPosts')}
+        </a>
 
-				<div class="bp-meta-block">
-					<div>
-						<div class="bp-meta-label">{t('blog.post.published')}</div>
-						<div class="bp-meta-accent"><FormattedDate date={pubDate} /></div>
-					</div>
-					{updatedDate && (
-						<div>
-							<div class="bp-meta-label">{t('blog.lastUpdated')}</div>
-							<div class="bp-meta-accent"><FormattedDate date={updatedDate} /></div>
-						</div>
-					)}
-					<div>
-						<div class="bp-meta-label">{t('blog.post.author')}</div>
-						<div class="bp-meta-value">Lucas David Traverso</div>
-					</div>
-					{tags && tags.length > 0 && (
-						<div>
-							<div class="bp-meta-label">{t('blog.post.tags')}</div>
-							<div class="bp-meta-tags">
-								{tags.map(tag => (
-									<span class="bp-tag">{tag}</span>
-								))}
-							</div>
-						</div>
-					)}
-				</div>
-			</aside>
+        <div class="bp-meta-block">
+          <div>
+            <div class="bp-meta-label">{t('blog.post.published')}</div>
+            <div class="bp-meta-accent"><FormattedDate date={pubDate} /></div>
+          </div>
+          {updatedDate && (
+            <div>
+              <div class="bp-meta-label">{t('blog.lastUpdated')}</div>
+              <div class="bp-meta-accent"><FormattedDate date={updatedDate} /></div>
+            </div>
+          )}
+          <div>
+            <div class="bp-meta-label">{t('blog.post.author')}</div>
+            <div class="bp-meta-value">Lucas David Traverso</div>
+          </div>
+          {tags && tags.length > 0 && (
+            <div>
+              <div class="bp-meta-label">{t('blog.post.tags')}</div>
+              <div class="bp-meta-tags">
+                {tags.map(tag => (
+                  <span class="bp-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
 
-			<!-- Main article -->
-			<main class="bp-main">
-				{heroImage && (
-					<div class="bp-hero">
-						<Image width={1020} height={510} src={heroImage} alt="" />
-					</div>
-				)}
+      <!-- Main article -->
+      <main class="bp-main">
+        {heroImage && (
+          <div class="bp-hero">
+            <Image width={1020} height={510} src={heroImage} alt="" />
+          </div>
+        )}
 
-				<div class="site-eyebrow">{t('blog.post.eyebrow')}</div>
-				<h1 class="bp-article-title">{title}</h1>
-				<div class="bp-article-divider"></div>
+        <div class="site-eyebrow">{t('blog.post.eyebrow')}</div>
+        <h1 class="bp-article-title">{title}</h1>
+        <div class="bp-article-divider"></div>
 
-				<article class="bp-prose site-prose">
-					<slot />
-				</article>
-			</main>
+        <article class="bp-prose site-prose">
+          <slot />
+        </article>
+      </main>
 
-			<!-- Right sidebar (TOC) -->
-			<aside class="bp-sidebar-right" id="bp-toc">
-				<div class="bp-toc-label">{t('blog.post.onThisPage')}</div>
-				<nav class="bp-toc-list" id="bp-toc-nav">
-					<!-- Populated by JS from article h2s -->
-				</nav>
-			</aside>
-		</div>
+      <!-- Right sidebar (TOC) -->
+      <aside class="bp-sidebar-right" id="bp-toc">
+        <div class="bp-toc-label">{t('blog.post.onThisPage')}</div>
+        <nav class="bp-toc-list" id="bp-toc-nav">
+          <!-- Populated by JS from article h2s -->
+        </nav>
+      </aside>
+    </div>
 
-		<SiteFooter />
+    <SiteFooter />
 
-		<script>
-			// Build TOC from article h2[id] elements
-			const headings = document.querySelectorAll('.bp-prose h2[id]');
-			const tocNav = document.getElementById('bp-toc-nav');
-			const tocSidebar = document.getElementById('bp-toc');
-			if (tocNav && headings.length > 0) {
-				headings.forEach(h => {
-					const a = document.createElement('a');
-					a.className = 'bp-toc-link';
-					a.href = `#${h.id}`;
-					a.textContent = h.textContent;
-					tocNav.appendChild(a);
-				});
+    <script>
+      // Build TOC from article h2[id] elements
+      const headings = document.querySelectorAll('.bp-prose h2[id]');
+      const tocNav = document.getElementById('bp-toc-nav');
+      const tocSidebar = document.getElementById('bp-toc');
+      if (tocNav && headings.length > 0) {
+        headings.forEach(h => {
+          const a = document.createElement('a');
+          a.className = 'bp-toc-link';
+          a.href = `#${h.id}`;
+          a.textContent = h.textContent;
+          tocNav.appendChild(a);
+        });
 
-				// Active TOC link on scroll
-				const tocLinks = tocNav.querySelectorAll('.bp-toc-link');
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							tocLinks.forEach(l => l.classList.remove('active'));
-							const active = tocNav.querySelector(`a[href="#${entry.target.id}"]`);
-							if (active) active.classList.add('active');
-						}
-					});
-				}, { rootMargin: '-20% 0px -70% 0px' });
-				headings.forEach(h => observer.observe(h));
-			} else if (tocSidebar) {
-				tocSidebar.style.display = 'none';
-			}
-		</script>
-	</body>
+        // Active TOC link on scroll
+        const tocLinks = tocNav.querySelectorAll('.bp-toc-link');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              tocLinks.forEach(l => l.classList.remove('active'));
+              const active = tocNav.querySelector(`a[href="#${entry.target.id}"]`);
+              if (active) active.classList.add('active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        headings.forEach(h => observer.observe(h));
+      } else if (tocSidebar) {
+        tocSidebar.style.display = 'none';
+      }
+    </script>
+  </body>
 </html>
 
 <style>
-	/* ── Layout ── */
-	.bp-layout {
-		display: grid;
-		grid-template-columns: 280px 1fr 200px;
-		min-height: calc(100vh - 52px);
-		max-width: 1200px;
-		margin: 0 auto;
-		padding-top: 52px;
-	}
+  /* ── Layout ── */
+  .bp-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 200px;
+    min-height: calc(100vh - 52px);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 52px;
+  }
 
-	/* ── Left sidebar ── */
-	.bp-sidebar-left {
-		position: sticky;
-		top: 52px;
-		height: calc(100vh - 52px);
-		border-right: 1px solid var(--site-border);
-		padding: 48px 32px;
-		display: flex;
-		flex-direction: column;
-		gap: 32px;
-		overflow-y: auto;
-		scrollbar-width: none;
-	}
+  /* ── Left sidebar ── */
+  .bp-sidebar-left {
+    position: sticky;
+    top: 52px;
+    height: calc(100vh - 52px);
+    border-right: 1px solid var(--site-border);
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
 
-	.bp-sidebar-left::-webkit-scrollbar { display: none; }
+  .bp-sidebar-left::-webkit-scrollbar { display: none; }
 
-	.bp-back-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 11px;
-		color: var(--site-text-faint);
-		text-decoration: none;
-		transition: color 0.2s;
-	}
+  .bp-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--site-text-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
 
-	.bp-back-link:hover { color: var(--site-accent); }
+  .bp-back-link:hover { color: var(--site-accent); }
 
-	.bp-meta-block {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-	}
+  .bp-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-	.bp-meta-label {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 10px;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--site-text-faint);
-		margin-bottom: 2px;
-	}
+  .bp-meta-label {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--site-text-faint);
+    margin-bottom: 2px;
+  }
 
-	.bp-meta-value {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 12px;
-		color: var(--site-text-muted);
-	}
+  .bp-meta-value {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--site-text-muted);
+  }
 
-	.bp-meta-accent {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 12px;
-		color: var(--site-accent);
-	}
+  .bp-meta-accent {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--site-accent);
+  }
 
-	.bp-meta-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 6px;
-		margin-top: 4px;
-	}
+  .bp-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
 
-	.bp-tag {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 10px;
-		padding: 3px 8px;
-		background: var(--site-bg-surface);
-		border: 1px solid var(--site-border);
-		color: var(--site-text-muted);
-		letter-spacing: 0.04em;
-		border-radius: 2px;
-		transition: color 0.2s, border-color 0.2s;
-		cursor: default;
-	}
+  .bp-tag {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--site-bg-surface);
+    border: 1px solid var(--site-border);
+    color: var(--site-text-muted);
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: default;
+  }
 
-	.bp-tag:hover {
-		color: var(--site-accent);
-		border-color: var(--site-accent-dim);
-	}
+  .bp-tag:hover {
+    color: var(--site-accent);
+    border-color: var(--site-accent-dim);
+  }
 
-	/* ── Main ── */
-	.bp-main {
-		padding: 56px 64px 120px;
-		min-width: 0;
-		border-right: 1px solid var(--site-border);
-	}
+  /* ── Main ── */
+  .bp-main {
+    padding: 56px 64px 120px;
+    min-width: 0;
+    border-right: 1px solid var(--site-border);
+  }
 
-	.bp-hero {
-		margin-bottom: 32px;
-		border-radius: 6px;
-		overflow: hidden;
-	}
+  .bp-hero {
+    margin-bottom: 32px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
 
-	.bp-hero :global(img) {
-		width: 100%;
-		height: auto;
-		display: block;
-	}
+  .bp-hero :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
-	/* ── Article header ── */
-	.bp-article-title {
-		font-size: 34px;
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		line-height: 1.15;
-		color: var(--site-text);
-		margin-bottom: 32px;
-		text-wrap: pretty;
-	}
+  /* ── Article header ── */
+  .bp-article-title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--site-text);
+    margin-bottom: 32px;
+    text-wrap: pretty;
+  }
 
-	.bp-article-divider {
-		height: 1px;
-		background: var(--site-border);
-		margin-bottom: 48px;
-	}
+  .bp-article-divider {
+    height: 1px;
+    background: var(--site-border);
+    margin-bottom: 48px;
+  }
 
-	/* ── Prose ── */
-	.bp-prose {
-		max-width: 640px;
-	}
+  /* ── Prose ── */
+  .bp-prose {
+    max-width: 640px;
+  }
 
-	/* ── Right sidebar (TOC) ── */
-	.bp-sidebar-right {
-		position: sticky;
-		top: 52px;
-		height: calc(100vh - 52px);
-		padding: 48px 28px;
-		overflow-y: auto;
-		scrollbar-width: none;
-	}
+  /* ── Right sidebar (TOC) ── */
+  .bp-sidebar-right {
+    position: sticky;
+    top: 52px;
+    height: calc(100vh - 52px);
+    padding: 48px 28px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
 
-	.bp-sidebar-right::-webkit-scrollbar { display: none; }
+  .bp-sidebar-right::-webkit-scrollbar { display: none; }
 
-	.bp-toc-label {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 10px;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--site-text-faint);
-		margin-bottom: 14px;
-	}
+  .bp-toc-label {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--site-text-faint);
+    margin-bottom: 14px;
+  }
 
-	.bp-toc-list {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-	}
+  .bp-toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
 
-	.bp-toc-list :global(.bp-toc-link) {
-		font-size: 12px;
-		color: var(--site-text-faint);
-		text-decoration: none;
-		padding: 4px 0 4px 12px;
-		border-left: 2px solid transparent;
-		line-height: 1.4;
-		transition: color 0.2s, border-color 0.2s;
-		display: block;
-	}
+  .bp-toc-list :global(.bp-toc-link) {
+    font-size: 12px;
+    color: var(--site-text-faint);
+    text-decoration: none;
+    padding: 4px 0 4px 12px;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+    transition: color 0.2s, border-color 0.2s;
+    display: block;
+  }
 
-	.bp-toc-list :global(.bp-toc-link:hover),
-	.bp-toc-list :global(.bp-toc-link.active) {
-		color: var(--site-text-muted);
-		border-left-color: var(--site-accent);
-	}
+  .bp-toc-list :global(.bp-toc-link:hover),
+  .bp-toc-list :global(.bp-toc-link.active) {
+    color: var(--site-text-muted);
+    border-left-color: var(--site-accent);
+  }
 
-	/* ── Responsive ── */
-	@media (max-width: 1000px) {
-		.bp-layout { grid-template-columns: 280px 1fr; }
-		.bp-sidebar-right { display: none; }
-		.bp-main { border-right: none; }
-	}
+  /* ── Responsive ── */
+  @media (max-width: 1000px) {
+    .bp-layout { grid-template-columns: 280px 1fr; }
+    .bp-sidebar-right { display: none; }
+    .bp-main { border-right: none; }
+  }
 
-	@media (max-width: 800px) {
-		.bp-layout { grid-template-columns: 1fr; }
-		.bp-sidebar-left {
-			position: static;
-			height: auto;
-			border-right: none;
-			border-bottom: 1px solid var(--site-border);
-			padding: 28px 24px;
-			flex-direction: row;
-			flex-wrap: wrap;
-			gap: 24px;
-		}
-		.bp-main {
-			padding: 40px 24px 80px;
-			border-right: none;
-		}
-		.bp-article-title { font-size: 26px; }
-	}
+  @media (max-width: 800px) {
+    .bp-layout { grid-template-columns: 1fr; }
+    .bp-sidebar-left {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--site-border);
+      padding: 28px 24px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .bp-main {
+      padding: 40px 24px 80px;
+      border-right: none;
+    }
+    .bp-article-title { font-size: 26px; }
+  }
 </style>

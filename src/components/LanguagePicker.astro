@@ -6,27 +6,27 @@ const alternateUrls = Astro.locals.alternateUrls as Record<string, string> | und
 ---
 
 <div class="language-picker">
-	{Object.entries(languages).map(([code, name]) =>
-		code === lang
-			? <span class="current-lang">{code.toUpperCase()}</span>
-			: <a href={alternateUrls ? alternateUrls[code] : getAlternateUrl(Astro.url, code as Lang).pathname}>{code.toUpperCase()}</a>
-	)}
+  {Object.entries(languages).map(([code, name]) =>
+    code === lang
+      ? <span class="current-lang">{code.toUpperCase()}</span>
+      : <a href={alternateUrls ? alternateUrls[code] : getAlternateUrl(Astro.url, code as Lang).pathname}>{code.toUpperCase()}</a>
+  )}
 </div>
 <style>
-	.language-picker {
-		display: flex;
-		gap: 0.3em;
-		align-items: center;
-		font-size: 0.9em;
-	}
-	.current-lang {
-		font-weight: bold;
-	}
-	a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	a:hover {
-		color: var(--accent);
-	}
+  .language-picker {
+    display: flex;
+    gap: 0.3em;
+    align-items: center;
+    font-size: 0.9em;
+  }
+  .current-lang {
+    font-weight: bold;
+  }
+  a {
+    text-decoration: none;
+    color: rgb(var(--gray));
+  }
+  a:hover {
+    color: var(--accent);
+  }
 </style>

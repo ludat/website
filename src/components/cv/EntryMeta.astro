@@ -1,67 +1,67 @@
 ---
 interface Props {
-	role: string;
-	date: string;
-	location?: string;
+  role: string;
+  date: string;
+  location?: string;
 }
 
 const { role, date, location } = Astro.props;
 ---
 
 <div class="entry-meta">
-	<span class="entry-role">{role}</span>
-	<div class="entry-right">
-		<span class="entry-date">{date}</span>
-		{location && <span class="entry-loc">{location}</span>}
-	</div>
+  <span class="entry-role">{role}</span>
+  <div class="entry-right">
+    <span class="entry-date">{date}</span>
+    {location && <span class="entry-loc">{location}</span>}
+  </div>
 </div>
 
 <style>
-	.entry-meta {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: 16px;
-		margin-top: 4px;
-		margin-bottom: 12px;
-	}
+  .entry-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
 
-	.entry-role {
-		font-size: 13px;
-		font-weight: 500;
-		color: var(--cv-text-muted);
-	}
+  .entry-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cv-text-muted);
+  }
 
-	.entry-right {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
-		gap: 2px;
-		flex-shrink: 0;
-	}
+  .entry-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+  }
 
-	.entry-date {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 11px;
-		color: var(--cv-accent);
-		white-space: nowrap;
-	}
+  .entry-date {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--cv-accent);
+    white-space: nowrap;
+  }
 
-	.entry-loc {
-		font-family: 'Space Mono', ui-monospace, monospace;
-		font-size: 11px;
-		color: var(--cv-text-faint);
-		white-space: nowrap;
-	}
+  .entry-loc {
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--cv-text-faint);
+    white-space: nowrap;
+  }
 
-	@media (max-width: 800px) {
-		.entry-meta {
-			flex-direction: column;
-			gap: 4px;
-		}
+  @media (max-width: 800px) {
+    .entry-meta {
+      flex-direction: column;
+      gap: 4px;
+    }
 
-		.entry-right {
-			align-items: flex-start;
-		}
-	}
+    .entry-right {
+      align-items: flex-start;
+    }
+  }
 </style>

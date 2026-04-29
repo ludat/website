@@ -11,13 +11,13 @@ const isActive = hrefStr === pathname || (!isLangRoot && pathname.startsWith(hre
 ---
 
 <a
-	href={href}
-	class:list={[
-		"inline-block py-4 px-2 text-black no-underline border-y-4 border-transparent",
-		{ "font-bold border-b-accent": isActive },
-		className,
-	]}
-	{...props}
+  href={href}
+  class:list={[
+    "inline-block py-4 px-2 text-black no-underline border-y-4 border-transparent",
+    { "font-bold border-b-accent": isActive },
+    className,
+  ]}
+  {...props}
 >
-	<slot />
+  <slot />
 </a>

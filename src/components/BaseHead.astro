@@ -9,10 +9,10 @@ import { languages, getAlternateUrl, defaultLang, type Lang } from '../i18n/util
 import { ui } from '../i18n/ui';
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
-	alternateUrls?: Record<string, string>;
+  title: string;
+  description: string;
+  image?: ImageMetadata;
+  alternateUrls?: Record<string, string>;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -28,10 +28,10 @@ const { title, description, image = FallbackImage, alternateUrls } = Astro.props
 <link rel="icon" href="/favicon.ico" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
-	rel="alternate"
-	type="application/rss+xml"
-	title={ui[lang]['site.title']}
-	href={new URL(getRelativeLocaleUrl(lang, '/rss.xml'), Astro.site)}
+  rel="alternate"
+  type="application/rss+xml"
+  title={ui[lang]['site.title']}
+  href={new URL(getRelativeLocaleUrl(lang, '/rss.xml'), Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
@@ -45,20 +45,20 @@ const { title, description, image = FallbackImage, alternateUrls } = Astro.props
 
 <!-- hreflang tags -->
 {alternateUrls
-	? <>
-		{Object.entries(alternateUrls).map(([l, url]) => (
-			<link rel="alternate" hreflang={l} href={new URL(url, Astro.site).href} />
-		))}
-		{alternateUrls[defaultLang] && (
-			<link rel="alternate" hreflang="x-default" href={new URL(alternateUrls[defaultLang], Astro.site).href} />
-		)}
-	</>
-	: <>
-		{Object.keys(languages).map((l) => (
-			<link rel="alternate" hreflang={l} href={getAlternateUrl(Astro.url, l as Lang).href} />
-		))}
-		<link rel="alternate" hreflang="x-default" href={getAlternateUrl(Astro.url, defaultLang).href} />
-	</>
+  ? <>
+    {Object.entries(alternateUrls).map(([l, url]) => (
+      <link rel="alternate" hreflang={l} href={new URL(url, Astro.site).href} />
+    ))}
+    {alternateUrls[defaultLang] && (
+      <link rel="alternate" hreflang="x-default" href={new URL(alternateUrls[defaultLang], Astro.site).href} />
+    )}
+  </>
+  : <>
+    {Object.keys(languages).map((l) => (
+      <link rel="alternate" hreflang={l} href={getAlternateUrl(Astro.url, l as Lang).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={getAlternateUrl(Astro.url, defaultLang).href} />
+  </>
 }
 
 <!-- Primary Meta Tags -->

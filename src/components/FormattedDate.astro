@@ -2,7 +2,7 @@
 import type { Lang } from '../i18n/utils';
 
 interface Props {
-	date: Date;
+  date: Date;
 }
 
 const { date } = Astro.props;
@@ -11,11 +11,11 @@ const localeMap = { en: 'en-us', es: 'es-ar' } as const;
 ---
 
 <time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString(localeMap[lang], {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
+  {
+    date.toLocaleDateString(localeMap[lang], {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
+  }
 </time>

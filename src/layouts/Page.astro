@@ -5,9 +5,9 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
-	title: string;
-	description: string;
-	activePath?: string;
+  title: string;
+  description: string;
+  activePath?: string;
 }
 
 const { title, description, activePath } = Astro.props;
@@ -16,60 +16,60 @@ const t = useTranslations(lang);
 ---
 
 <html lang={lang} data-theme="dark">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-	<body>
-		<Navbar activePath={activePath} />
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <Navbar activePath={activePath} />
 
-		<div class="page-layout">
-			<main class="page-main">
-				<div class="site-eyebrow">{title}</div>
-				<div class="page-divider"></div>
-				<article class="site-prose">
-					<slot />
-				</article>
-			</main>
-		</div>
+    <div class="page-layout">
+      <main class="page-main">
+        <div class="site-eyebrow">{title}</div>
+        <div class="page-divider"></div>
+        <article class="site-prose">
+          <slot />
+        </article>
+      </main>
+    </div>
 
-		<SiteFooter />
-	</body>
+    <SiteFooter />
+  </body>
 </html>
 
 <style>
-	.page-layout {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding-top: 52px;
-		min-height: calc(100vh - 52px);
-	}
+  .page-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 52px;
+    min-height: calc(100vh - 52px);
+  }
 
-	.page-main {
-		max-width: 640px;
-		margin: 0 auto;
-		padding: 56px 32px 120px;
-	}
+  .page-main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 32px 120px;
+  }
 
-	.page-divider {
-		height: 1px;
-		background: var(--site-border);
-		margin-bottom: 48px;
-	}
+  .page-divider {
+    height: 1px;
+    background: var(--site-border);
+    margin-bottom: 48px;
+  }
 
-	/* Page-specific: h1 rendered from MDX */
-	.page-main :global(h1) {
-		font-size: 34px;
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		line-height: 1.15;
-		color: var(--site-text);
-		margin-bottom: 32px;
-		text-wrap: pretty;
-	}
+  /* Page-specific: h1 rendered from MDX */
+  .page-main :global(h1) {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--site-text);
+    margin-bottom: 32px;
+    text-wrap: pretty;
+  }
 
-	@media (max-width: 800px) {
-		.page-main {
-			padding: 40px 24px 80px;
-		}
-	}
+  @media (max-width: 800px) {
+    .page-main {
+      padding: 40px 24px 80px;
+    }
+  }
 </style>

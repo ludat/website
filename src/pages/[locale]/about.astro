@@ -5,7 +5,7 @@ import type { Lang } from '../../i18n/utils';
 import Page from '../../layouts/Page.astro';
 
 export function getStaticPaths() {
-	return Object.keys(languages).map((locale) => ({ params: { locale } }));
+  return Object.keys(languages).map((locale) => ({ params: { locale } }));
 }
 
 const locale = Astro.currentLocale as Lang;
@@ -14,5 +14,5 @@ const { Content } = await render(page);
 ---
 
 <Page title={page.data.title} description={page.data.description} activePath="/about">
-	<Content />
+  <Content />
 </Page>
