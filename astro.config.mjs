@@ -1,5 +1,6 @@
 // @ts-check
 
+import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
@@ -17,6 +18,9 @@ export default defineConfig({
         !draftSlugs.some((slug) => page.includes(`/blog/${slug}/`)),
     }),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
