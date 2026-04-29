@@ -3,11 +3,14 @@ title: CV
 description: Professional experience, projects, and education
 ---
 
+import EntryMeta from '../../../components/cv/EntryMeta.astro';
+import Tags from '../../../components/cv/Tags.astro';
+
 ## Professional Experience
 
 ### 10Pines
 
-Software Developer, DevOps Engineer, SRE — Jul 2016 - May 2025 — Buenos Aires, Argentina
+<EntryMeta role="Software Developer, DevOps Engineer, SRE" date="Jul 2016 – May 2025" location="Buenos Aires, AR" />
 
 At this horizontal company I wore many hats beyond writing code. I ran the mentoring
 program for new hires and helped shape company culture. On the infrastructure side,
@@ -28,108 +31,136 @@ Some of the client projects I worked on:
 - **Aquabyte** — Built an ML pipeline to detect fish health issues, isolated via Docker.
 - **Cardboardit.com** — Built a user story mapping app with Jira/Rally/TFS/Pivotal integrations and real-time sync.
 
-Kubernetes, Elixir, Haskell, Ruby on Rails, TypeScript, Node.js, AWS, GCP, ArgoCD, Docker, Helm, Terraform
+<Tags tags={["Kubernetes", "Elixir", "Haskell", "Ruby on Rails", "TypeScript", "Node.js", "AWS", "GCP", "ArgoCD", "Docker", "Helm", "Terraform"]} />
 
 ### Mulesoft Inc.
 
-Software Developer — Sep 2015 - Mar 2016 — Buenos Aires, Argentina
+<EntryMeta role="Software Developer" date="Sep 2015 – Mar 2016" location="Buenos Aires, AR" />
 
 Developed a RESTful API for a CMS with integrations into microservices and the Eclipse IDE.
 
-JavaScript, Node.js, Express, AWS, AngularJS
+<Tags tags={["JavaScript", "Node.js", "Express", "AWS", "AngularJS"]} />
 
 ### Freelance
 
-Web Developer — Apr 2015 - Sep 2015 — Buenos Aires, Argentina
+<EntryMeta role="Web Developer" date="Apr 2015 – Sep 2015" location="Buenos Aires, AR" />
 
 Built a web-based career counseling application, handling the full project lifecycle.
 
-Python, Django, Ansible, Nginx, DigitalOcean
+<Tags tags={["Python", "Django", "Ansible", "Nginx", "DigitalOcean"]} />
 
 ### Ozono Informatica
 
-IT Support — Sep 2014 - Mar 2015 — Buenos Aires, Argentina
+<EntryMeta role="IT Support" date="Sep 2014 – Mar 2015" location="Buenos Aires, AR" />
 
 Maintained Windows systems, configured pfSense as a load balancer, managed Xen virtual machines, and containerized on-prem apps.
 
-Docker, Linux, pfSense, Windows
+<Tags tags={["Docker", "Linux", "pfSense", "Windows"]} />
 
 ### Toteming SA
 
-Developer — Jan 2014 - Jul 2014 — Buenos Aires, Argentina
+<EntryMeta role="Developer" date="Jan 2014 – Jul 2014" location="Buenos Aires, AR" />
 
 Developed an event marketing system with RFID wristbands, an Android app, and a web UI.
 
-Java, Android, PHP, Python, MySQL
+<Tags tags={["Java", "Android", "PHP", "Python", "MySQL"]} />
 
 ## Projects
 
 ### PdeP (Paradigmas de Programación) — UTN
 
-Teaching Assistant — 2025 - Present — Buenos Aires, Argentina
+<EntryMeta role="Teaching Assistant" date="2025 – Present" location="Buenos Aires, AR" />
 
 Teaching assistant for the Programming Paradigms course at UTN.
 
 ### [PdePreludat](https://github.com/uqbar-project/pdepreludat)
 
-Developer - 2018 - Present - Buenos Aires, Argentina
+<EntryMeta role="Developer" date="2018 – Present" location="Buenos Aires, AR" />
 
 Alternative Prelude for Haskell with the objective of easing the learning
 curve of functional programming to new students.
 
 ### HaskellBA
 
-Organizer & Speaker — 2017 - Present — Buenos Aires, Argentina
+<EntryMeta role="Organizer & Speaker" date="2017 – Present" location="Buenos Aires, AR" />
 
 Organize and occasionally deliver talks on Haskell and functional programming.
 
 ### ZuriHac 2019
 
-Participant — Jun 2019 — Zurich, Switzerland
+<EntryMeta role="Participant" date="Jun 2019" location="Zurich, CH" />
 
 Participated in the advanced track workshop given by Well-Typed and attended talks
 at the largest Haskell community event in the world.
 
 ### [Conferer](https://github.com/ludat/conferer)
 
-Developer - 2019 - Present
+<EntryMeta role="Developer" date="2019 – Present" />
 
 Open source Haskell library for managing application configuration.
 Features a robust CI pipeline tested against multiple GHC versions.
 
-Haskell, Servant, Docker, Open Source
+<Tags tags={["Haskell", "Servant", "Docker", "Open Source"]} />
 
 ### [Banana Split](https://github.com/ludat/banana-split)
 
-Developer — 2023 - Present
+<EntryMeta role="Developer" date="2023 – Present" />
 
 Open source expense-splitting app similar to Splitwise with additional features.
 Deployed on a personal Kubernetes cluster with Helm and ArgoCD, using pgroll for
 zero-downtime database migrations.
 
-Haskell, Elm, Postgres, Kubernetes, Open Source
+<Tags tags={["Haskell", "Elm", "Postgres", "Kubernetes", "Open Source"]} />
 
 ### NixOS Configuration
 
-Developer — 2024 - Present
+<EntryMeta role="Developer" date="2024 – Present" />
 
 Open source NixOS configuration for my personal systems.
 
-Nix, NixOS, Open Source
+<Tags tags={["Nix", "NixOS", "Open Source"]} />
 
 ## Talks
 
-- [**Megaparsec: what regex want to be when they grow up**](https://youtu.be/QnRt76Ml8jI) - Introduction to parser combinators with Megaparsec. (HaskellBA / 10Pines)
-- **Functional UIs with Elm** - We used functional programming concepts to build user interfaces with Elm. (PdeP — UTN)
-- **Haskell in Production** - We explore a real life example of an app using Haskell with an Tax income calculator. (PdeP — UTN)
-- [**Haskell at the frontend: FRP using reflex**](https://youtu.be/GE_VrhA72YI) - Intro to Functional Reactive Programming using Reflex. (HaskellBA)
-- [**Evaluating JavaScript in Haskell**](https://youtu.be/ALY6rg_1lq0) -  We go through the implementation of a recursive interpreter for Javascript using Haskell for a NGO. (HaskellBA)
+### [Megaparsec: what regex want to be when they grow up](https://youtu.be/QnRt76Ml8jI)
+
+<EntryMeta role="Speaker" date="Dic 2025" location="HaskellBA / 10Pines" />
+
+Introduction to parser combinators with Megaparsec.
+
+### Functional UIs with Elm
+
+<EntryMeta role="Speaker" date="May 2025" location="PdeP — UTN" />
+
+We used functional programming concepts to build user interfaces with Elm.
+
+### Haskell in the real world
+
+<EntryMeta role="Speaker" date="Dic 2020" location="PdeP — UTN" />
+
+We explore a real life example of an app using Haskell with a tax income calculator.
+
+### [Evaluating JavaScript in Haskell](https://youtu.be/ALY6rg_1lq0)
+
+<EntryMeta role="Speaker" date="Feb 2019" location="HaskellBA" />
+
+We go through the implementation of a recursive interpreter for Javascript using Haskell for a NGO.
+
+### [Haskell at the frontend: FRP using reflex](https://youtu.be/GE_VrhA72YI)
+
+<EntryMeta role="Speaker" date="Feb 2018" location="HaskellBA" />
+
+Intro to Functional Reactive Programming using Reflex.
 
 ## Education
 
 ### University of Buenos Aires
 
-Bachelor in Computer Science — 2014 - — Argentina
+<EntryMeta role="Bachelor in Computer Science" date="2014 –" location="Argentina" />
+
+### Instituto Industrial Luis A. Huergo
+
+<EntryMeta role="Technical Diploma in Electronics" date="2008 – 2013" location="Buenos Aires, AR" />
 
 ## Languages
 

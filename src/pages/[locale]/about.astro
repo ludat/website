@@ -13,6 +13,6 @@ const page = await getEntry('pages', `about/${locale}`)!;
 const { Content } = await render(page);
 ---
 
-<Page title={page.data.title} description={page.data.description}>
+<Page title={page.data.title} description={page.data.description} activePath="/about">
 	<Content />
 </Page>

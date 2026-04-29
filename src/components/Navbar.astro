@@ -1,0 +1,125 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, type Lang, languages, getAlternateUrl } from '../i18n/utils';
+
+interface Props {
+	activePath?: string;
+}
+
+const { activePath } = Astro.props;
+const lang = Astro.currentLocale as Lang;
+const t = useTranslations(lang);
+
+const navLinks = [
+	{ label: t('nav.home'), href: getRelativeLocaleUrl(lang, '/'), path: '/' },
+	{ label: t('nav.blog'), href: getRelativeLocaleUrl(lang, '/blog'), path: '/blog' },
+	{ label: t('nav.about'), href: getRelativeLocaleUrl(lang, '/about'), path: '/about' },
+	{ label: t('nav.cv'), href: getRelativeLocaleUrl(lang, '/cv'), path: '/cv' },
+];
+---
+
+<nav class="site-navbar">
+	<div class="site-navbar-inner">
+		<a class="site-brand" href={getRelativeLocaleUrl(lang, '/')}>
+			ludat<span>.io</span>
+		</a>
+		<div class="site-nav-links">
+			{navLinks.map(link => (
+				<a class:list={["site-nav-link", { active: link.path === activePath }]} href={link.href}>
+					{link.label}
+				</a>
+			))}
+			<div class="site-nav-divider"></div>
+			{Object.entries(languages).map(([code]) => (
+				<a
+					class:list={["site-nav-link", { active: code === lang }]}
+					href={getAlternateUrl(Astro.url, code as Lang).pathname}
+				>
+					{code.toUpperCase()}
+				</a>
+			))}
+		</div>
+	</div>
+</nav>
+
+<style>
+	.site-navbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		background: var(--site-bg);
+		border-bottom: 1px solid var(--site-border);
+		height: 52px;
+		transition: background 0.3s;
+	}
+
+	.site-navbar-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 64px 0 32px;
+	}
+
+	.site-brand {
+		font-family: 'Space Mono', ui-monospace, monospace;
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--site-text);
+		text-decoration: none;
+		letter-spacing: -0.01em;
+	}
+
+	.site-brand span {
+		color: var(--site-accent);
+	}
+
+	.site-nav-links {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.site-nav-link {
+		font-size: 12px;
+		font-family: 'Space Mono', ui-monospace, monospace;
+		color: var(--site-text-muted);
+		text-decoration: none;
+		padding: 6px 12px;
+		border-radius: 4px;
+		transition: color 0.2s, background 0.2s;
+		letter-spacing: 0.02em;
+	}
+
+	.site-nav-link:hover {
+		color: var(--site-text);
+		background: var(--site-bg-surface);
+	}
+
+	.site-nav-link.active {
+		color: var(--site-accent);
+	}
+
+	.site-nav-divider {
+		width: 1px;
+		height: 16px;
+		background: var(--site-border);
+		margin: 0 4px;
+	}
+
+	@media (max-width: 800px) {
+		.site-navbar-inner {
+			padding: 0 24px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.site-navbar-inner {
+			padding: 0 20px;
+		}
+	}
+</style>

@@ -1,8 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { languages } from '../../i18n/ui';
 import type { Lang } from '../../i18n/utils';
-import Page from '../../layouts/Page.astro';
+import HomeLayout from '../../layouts/HomeLayout.astro';
 
 export function getStaticPaths() {
 	return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -10,25 +10,6 @@ export function getStaticPaths() {
 
 const locale = Astro.currentLocale as Lang;
 const page = await getEntry('pages', `index/${locale}`)!;
-const { Content } = await render(page);
 ---
 
-<Page title={page.data.title} description={page.data.description}>
-	<Content />
-</Page>
-
-<style>
-	.hero {
-		padding: 2em 0;
-	}
-	.name {
-		color: var(--accent);
-	}
-	.tagline {
-		font-size: 1.2em;
-		color: rgb(var(--gray));
-	}
-	.intro {
-		padding: 1em 0;
-	}
-</style>
+<HomeLayout title={`${page.data.title} — Lucas David Traverso`} description={page.data.description} />

@@ -1,46 +1,170 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
-@theme {
-	--font-sans: "Atkinson", sans-serif;
-	--color-accent: #2337ff;
-	--color-accent-dark: #000d8a;
-	--color-black: rgb(15, 18, 25);
-	--color-gray: rgb(96, 115, 159);
-	--color-gray-light: rgb(229, 233, 240);
-	--color-gray-dark: rgb(34, 41, 57);
-}
-
-/* Kept for scoped component styles that reference these vars */
+/* ── Site-wide design tokens ── */
+/* Dark theme is the default. Light theme activates via data-theme="light" on <html>. */
 :root {
-	--accent: var(--color-accent);
-	--accent-dark: var(--color-accent-dark);
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--site-bg: oklch(12% 0.012 240);
+	--site-bg-surface: oklch(16% 0.012 240);
+	--site-bg-hover: oklch(20% 0.012 240);
+	--site-border: oklch(25% 0.012 240);
+	--site-text: oklch(88% 0.008 90);
+	--site-text-muted: oklch(55% 0.008 90);
+	--site-text-faint: oklch(38% 0.008 90);
+	--site-accent: oklch(72% 0.14 160);
+	--site-accent-dim: oklch(40% 0.10 160);
+	--site-code-bg: oklch(15% 0.015 240);
 }
 
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+[data-theme="light"] {
+	--site-bg: oklch(97% 0.006 90);
+	--site-bg-surface: oklch(93% 0.006 90);
+	--site-bg-hover: oklch(89% 0.006 90);
+	--site-border: oklch(82% 0.006 90);
+	--site-text: oklch(18% 0.008 240);
+	--site-text-muted: oklch(42% 0.008 240);
+	--site-text-faint: oklch(60% 0.008 240);
+	--site-accent: oklch(45% 0.14 160);
+	--site-accent-dim: oklch(88% 0.06 160);
+	--site-code-bg: oklch(90% 0.006 240);
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+
+html {
+	scroll-behavior: smooth;
 }
 
 body {
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
+	font-family: 'Space Grotesk', system-ui, sans-serif;
+	background: var(--site-bg);
+	color: var(--site-text);
+	line-height: 1.6;
+	min-height: 100vh;
+	transition: background 0.3s, color 0.3s;
+}
+
+/* ── Shared prose styles ──
+   Used by BlogPost and Page layouts for markdown/MDX content. */
+.site-prose :is(h2) {
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	color: var(--site-text);
+	margin: 48px 0 16px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--site-border);
+}
+
+.site-prose :is(h2:first-child) { margin-top: 0; }
+
+.site-prose :is(p) {
+	font-size: 15px;
+	color: var(--site-text-muted);
+	line-height: 1.8;
+	text-wrap: pretty;
+	margin-bottom: 18px;
+}
+
+.site-prose :is(a) {
+	color: var(--site-accent);
+	text-decoration: none;
+	border-bottom: 1px solid var(--site-accent-dim);
+	transition: border-color 0.2s;
+}
+
+.site-prose :is(a:hover) { border-color: var(--site-accent); }
+
+.site-prose :is(ul, ol) {
+	padding-left: 0;
+	margin-bottom: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.site-prose :is(li) {
+	font-size: 15px;
+	color: var(--site-text-muted);
+	line-height: 1.7;
+	padding-left: 20px;
+	position: relative;
+	list-style: none;
+}
+
+.site-prose :is(li)::before {
+	content: '\2014';
+	position: absolute;
+	left: 0;
+	color: var(--site-accent);
+	font-family: 'Space Mono', ui-monospace, monospace;
+	font-size: 11px;
+	top: 3px;
+}
+
+.site-prose :is(li code) { font-size: 13px; }
+
+.site-prose :is(code) {
+	font-family: 'Space Mono', ui-monospace, monospace;
+	font-size: 12.5px;
+	background: var(--site-code-bg);
+	border: 1px solid var(--site-border);
+	color: var(--site-accent);
+	padding: 1px 6px;
+	border-radius: 3px;
+}
+
+.site-prose :is(pre) {
+	background: var(--site-code-bg);
+	border: 1px solid var(--site-border);
+	border-radius: 6px;
+	padding: 24px 28px;
+	overflow-x: auto;
+	margin-bottom: 24px;
+	position: relative;
+}
+
+.site-prose :is(pre)::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: var(--site-accent);
+	opacity: 0.4;
+	border-radius: 6px 6px 0 0;
+}
+
+.site-prose :is(pre) :is(code) {
+	font-family: 'Space Mono', ui-monospace, monospace;
+	font-size: 12.5px;
+	color: var(--site-text-muted);
+	background: none;
+	border: none;
+	padding: 0;
+	line-height: 1.7;
+	white-space: pre;
+}
+
+.site-prose :is(strong) {
+	color: var(--site-text);
+	font-weight: 600;
+}
+
+/* ── Shared eyebrow pattern ── */
+.site-eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-family: 'Space Mono', ui-monospace, monospace;
+	font-size: 11px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--site-accent);
+	margin-bottom: 20px;
+}
+
+.site-eyebrow::before {
+	content: '';
+	display: block;
+	width: 32px;
+	height: 1px;
+	background: var(--site-accent);
+	flex-shrink: 0;
 }

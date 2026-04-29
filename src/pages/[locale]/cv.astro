@@ -2,7 +2,7 @@
 import { getEntry, render } from 'astro:content';
 import { languages } from '../../i18n/ui';
 import type { Lang } from '../../i18n/utils';
-import Page from '../../layouts/Page.astro';
+import CvLayout from '../../layouts/CvLayout.astro';
 
 export function getStaticPaths() {
 	return Object.keys(languages).map((locale) => ({ params: { locale } }));
@@ -13,6 +13,6 @@ const page = await getEntry('pages', `cv/${locale}`)!;
 const { Content } = await render(page);
 ---
 
-<Page title={`${page.data.title} - Ludat`} description={page.data.description}>
+<CvLayout title={`${page.data.title} - Ludat`} description={page.data.description}>
 	<Content />
-</Page>
+</CvLayout>

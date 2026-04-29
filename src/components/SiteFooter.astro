@@ -1,0 +1,53 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+const lang = Astro.currentLocale as Lang;
+const t = useTranslations(lang);
+---
+
+<footer class="site-footer">
+	<span>&copy; {new Date().getFullYear()} Lucas David Traverso. {t('footer.rights')}</span>
+	<div class="site-footer-links">
+		<a href="https://github.com/ludat" target="_blank" rel="noopener noreferrer">GitHub</a>
+		<a href="https://linkedin.com/in/ludat" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+		<a href="https://gitlab.com/ludat" target="_blank" rel="noopener noreferrer">GitLab</a>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--site-border);
+		padding: 28px 40px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 12px;
+		max-width: 1200px;
+		margin: 0 auto;
+		font-family: 'Space Mono', ui-monospace, monospace;
+		font-size: 11px;
+		color: var(--site-text-faint);
+	}
+
+	.site-footer-links {
+		display: flex;
+		gap: 20px;
+	}
+
+	.site-footer-links a {
+		color: var(--site-text-faint);
+		text-decoration: none;
+		font-family: 'Space Mono', ui-monospace, monospace;
+		font-size: 11px;
+		transition: color 0.2s;
+	}
+
+	.site-footer-links a:hover { color: var(--site-accent); }
+
+	@media (max-width: 800px) {
+		.site-footer {
+			padding: 28px 24px;
+		}
+	}
+</style>
