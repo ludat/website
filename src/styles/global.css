@@ -13,6 +13,21 @@
   --site-code-bg: oklch(15% 0.015 240);
 }
 
+@media print, (prefers-color-scheme: light) {
+  :root {
+    --site-bg: oklch(97% 0.006 90);
+    --site-bg-surface: oklch(93% 0.006 90);
+    --site-bg-hover: oklch(89% 0.006 90);
+    --site-border: oklch(82% 0.006 90);
+    --site-text: oklch(18% 0.008 240);
+    --site-text-muted: oklch(42% 0.008 240);
+    --site-text-faint: oklch(60% 0.008 240);
+    --site-accent: oklch(45% 0.14 160);
+    --site-accent-dim: oklch(88% 0.06 160);
+    --site-code-bg: oklch(90% 0.006 240);
+  }
+}
+
 [data-theme="light"] {
   --site-bg: oklch(97% 0.006 90);
   --site-bg-surface: oklch(93% 0.006 90);
