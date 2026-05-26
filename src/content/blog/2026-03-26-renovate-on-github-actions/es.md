@@ -1,10 +1,21 @@
 ---
 title: 'Corriendo renovate en github actions sin tokens de más'
 description: |
-  Como correr renovate en github actions usando el token efimero por defecto
+  Como correr renovate en github actions usando el token efímero por defecto
   para ahorrarnos algunos clicks.
 urlSlug: 'renovate-en-github-actions'
+updatedDate: '2026-05-26'
 ---
+
+## Caveats
+
+Tené en mente que a pesar de que esto funcion tiene un par de salvedades:
+
+- Renovate no puede crear PRs para archivos en `./.workflows` ya que eso
+    requiere el permiso de `workflows` que no se puede otorgar a un token de
+    github actions.
+- Los PRs creados por el token de github actions no corren CI, por una
+    política de seguridad de github.
 
 ## El problema
 
@@ -80,17 +91,9 @@ Notese que hay que decirle el nombre del repo sobre el que queremos que trabaje
 porque renovate corre en un container así que no tiene acceso al repo. Pero
 igual necesitamos checkout para conseguir la configuración de renovate.
 
-## Detalle para crear PRs
-
-Finalmente si queremos que renovate tenga la capacidad de crear PRs tenemos que
-habilitarlo en los settings del proyecto, por ejemplo:
-https://github.com/USUARIO/REPOSITORIO/settings/actions ahí luego necesitamos
-ir a la sección `Workflow permissions` y habilitar
-`Allow GitHub Actions to create and approve pull requests`.
-
 ## Debug
 
-Si algo no funciona podemos pasar LOG_LEVEL para que renovate no cuente en
+Si algo no funciona podemos pasar `LOG_LEVEL` para que renovate no cuente en
 detalle de que esta haciendo.
 
 ```yaml
@@ -102,6 +105,16 @@ jobs:
           LOG_LEVEL: 'debug'
 ```
 
+## Detalle para crear PRs
+
+Finalmente si queremos que renovate tenga la capacidad de crear PRs tenemos que
+habilitarlo en los settings del proyecto, por ejemplo:
+https://github.com/USUARIO/REPOSITORIO/settings/actions ahí luego necesitamos
+ir a la sección `Workflow permissions` y:
+1. Habilitar `Allow GitHub Actions to create and approve pull requests`.
+1. Cambiar el selector de `Read repository contents and packages
+     permissions` a `Workflows have read and write permissions in the
+     repository for all scopes`.
 
 ## TLDR
 
@@ -123,7 +136,7 @@ jobs:
       issues: write
       packages: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: renovatebot/github-action@v46.1.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

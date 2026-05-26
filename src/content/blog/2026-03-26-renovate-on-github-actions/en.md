@@ -4,7 +4,17 @@ description: |
   How to run renovate on github actions using the GA's ephemeral token to save
   a few clicks.
 urlSlug: 'renovate-on-github-actions'
+updatedDate: '2026-05-26'
 ---
+
+## Caveats
+
+Bear in mind that even though this works it has a couple of caveats:
+
+- Renovate cannot create PRs for files inside `.workflows` since that requires
+    a permission of `workflows` that cannot be granted on a github action token
+- The PRs created by the github actions token do not run CI jobs at all
+
 
 ## The problem
 
@@ -79,7 +89,7 @@ need checkout to get the renovate configuration.
 
 ## Debug
 
-If something doesn't work we can pass LOG_LEVEL so renovate tells us in detail
+If something doesn't work we can pass `LOG_LEVEL` so renovate tells us in detail
 what it's doing.
 
 ```yaml
@@ -94,10 +104,14 @@ jobs:
 ## One last detail for PRs
 
 Finally if we want renovate to be able to create PRs we need to allow it on the
-project settings, for example: 
+project settings, for example:
 https://github.com/USER/REPOSITORY/settings/actions. There we need to go to the
-section `Workflow permissions` and enable
-`Allow GitHub Actions to create and approve pull requests`.
+section `Workflow permissions` and:
+
+1. Enable `Allow GitHub Actions to create and approve pull requests`.
+1. Switch the radio button from `Read repository contents and packages
+     permissions` to `Workflows have read and write permissions in the
+     repository for all scopes`.
 
 ## TLDR
 
@@ -119,7 +133,7 @@ jobs:
       issues: write
       packages: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: renovatebot/github-action@v46.1.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
