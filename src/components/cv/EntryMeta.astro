@@ -1,6 +1,6 @@
 ---
 interface Props {
-  role: string;
+  role?: string;
   date: string;
   location?: string;
 }
@@ -9,7 +9,7 @@ const { role, date, location } = Astro.props;
 ---
 
 <div class="entry-meta">
-  <span class="entry-role">{role}</span>
+  {role && <span class="entry-role">{role}</span>}
   <div class="entry-right">
     <span class="entry-date">{date}</span>
     {location && <span class="entry-loc">{location}</span>}
@@ -38,6 +38,8 @@ const { role, date, location } = Astro.props;
     align-items: flex-end;
     gap: 2px;
     flex-shrink: 0;
+    /* Stays right-aligned even when there's no role to push against */
+    margin-left: auto;
   }
 
   .entry-date {
@@ -62,6 +64,7 @@ const { role, date, location } = Astro.props;
 
     .entry-right {
       align-items: flex-start;
+      margin-left: 0;
     }
   }
 </style>
