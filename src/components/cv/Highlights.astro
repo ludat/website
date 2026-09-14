@@ -1,0 +1,26 @@
+---
+import { currentAudience, isVisible, type AudienceOrFull } from '../../cv/audiences';
+
+interface Item {
+  name: string;
+  text: string;
+  href?: string;
+  only?: AudienceOrFull[];
+  not?: AudienceOrFull[];
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+const current = currentAudience(Astro.params);
+const visible = items.filter((item) => isVisible(current, item.only, item.not));
+---
+
+{/* Same markup a markdown list produces, so CvLayout's styles apply unchanged. */}
+<ul>
+  {visible.map((item) => (
+    <li><strong>{item.href ? <a href={item.href}>{item.name}</a> : item.name}</strong>{`: ${item.text}`}</li>
+  ))}
+</ul>

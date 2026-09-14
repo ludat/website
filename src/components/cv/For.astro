@@ -1,0 +1,15 @@
+---
+import { currentAudience, isVisible, type AudienceOrFull } from '../../cv/audiences';
+
+interface Props {
+  /** Show only on these variants ('full' is the unfiltered CV). */
+  only?: AudienceOrFull[];
+  /** Show everywhere except these variants. */
+  not?: AudienceOrFull[];
+}
+
+const { only, not } = Astro.props;
+const current = currentAudience(Astro.params);
+---
+
+{isVisible(current, only, not) && <slot />}

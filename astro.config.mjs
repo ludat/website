@@ -12,10 +12,7 @@ export default defineConfig({
   site: 'https://ludat.io',
   integrations: [
     mdx(),
-    sitemap({
-      filter: (page) =>
-        !draftSlugs.some((slug) => page.includes(`/blog/${slug}/`)),
-    }),
+    sitemap(),
   ],
   i18n: {
     defaultLocale: 'en',

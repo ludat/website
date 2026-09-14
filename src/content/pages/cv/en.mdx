@@ -4,7 +4,66 @@ description: Professional experience, projects, and education
 ---
 
 import EntryMeta from '../../../components/cv/EntryMeta.astro';
+import For from '../../../components/cv/For.astro';
+import Highlights from '../../../components/cv/Highlights.astro';
 import Tags from '../../../components/cv/Tags.astro';
+
+<div class="cv-summary">
+
+<For only={['full']}>
+
+Senior Software Engineer with experience building backend systems, internal developer
+platforms, and production infrastructure. Specialized in Kubernetes, GitOps,
+TypeScript/Node.js, Elixir, and functional programming. Experienced in migrations,
+mentoring, and operating distributed systems across AWS, GCP, and on-prem environments.
+
+</For>
+
+<For only={['devops']}>
+
+Senior Software Engineer focused on platform engineering and SRE work: Kubernetes,
+GitOps, and production infrastructure across AWS, GCP, and on-prem environments.
+Built an internal developer platform from the ground up and led several migrations
+onto Kubernetes, always from the perspective of someone who also writes the services
+running on top of it.
+
+</For>
+
+<For only={['backend']}>
+
+Senior Software Engineer focused on backend systems with Haskell, Elixir, and
+TypeScript. Ten years designing APIs and distributed systems, teaching and mentoring
+functional programming, and operating services in production on Kubernetes.
+
+</For>
+
+</div>
+
+## Core Expertise
+
+<For only={['full']}>
+
+- **Platform & reliability:** Kubernetes, GitOps, ArgoCD, Helm, Terraform, Docker, AWS, and GCP.
+- **Backend engineering:** TypeScript/Node.js, Elixir, Haskell, Ruby on Rails, APIs, and distributed systems.
+- **Technical leadership:** Developer-platform work, production migrations, mentoring, and team coaching.
+
+</For>
+
+<For only={['devops']}>
+
+- **Platform & reliability:** Kubernetes, GitOps, ArgoCD, Helm, Terraform, Docker, AWS, and GCP.
+- **Production engineering:** Developer platforms, cloud migrations, observability, and operating microservices.
+- **Collaboration:** Backend engineering experience, mentoring, and technical leadership.
+
+</For>
+
+<For only={['backend']}>
+
+- **Backend systems:** Haskell, Elixir, TypeScript/Node.js, Ruby on Rails, APIs, and distributed systems.
+- **Functional programming:** Production Haskell and Elixir, open source, teaching, and community work.
+- **Delivery & operations:** Kubernetes, GitOps, and experience operating services in production.
+
+</For>
 
 ## Professional Experience
 
@@ -12,79 +71,125 @@ import Tags from '../../../components/cv/Tags.astro';
 
 <EntryMeta role="Software Developer, DevOps Engineer, SRE" date="Jul 2016 – May 2025" location="Buenos Aires, AR" />
 
-At this horizontal company I wore many hats beyond writing code. I ran the mentoring
-program for new hires and helped shape company culture. On the infrastructure side,
-I built an internal developer platform on Kubernetes using ArgoCD, Helm, and Grafana
-after migrating off Heroku, and led the migration from a homegrown OAuth2 solution
-to OIDC across multiple languages and frameworks.
+Worked across client delivery, developer-platform engineering, and mentoring. Built
+an internal developer platform adopted by about five teams, moving services from
+Heroku to Kubernetes to improve deployment speed and reduce infrastructure costs.
+Led the migration from an unmaintained custom OAuth2 integration to OIDC, with a
+Rails identity provider and clients across JavaScript, Elm, TypeScript, Rails, Java,
+and Haskell. Led the new-hire mentoring program for five years, supporting two
+cohorts of about five hires each year.
 
-Some of the client projects I worked on:
+Selected client work:
 
-- **Richeta** — Trained and coached a team in Elixir, Phoenix, and LiveView for a CRM rewrite.
-- **Mumuki** — Implemented a javascript interpreter to enable a static code analyzer to run simple code locally.
-- **Spring by Amaze** — Migrated a Rails monolith from EC2 to EKS with ingress-nginx, ArgoCD, Helm, and Terraform.
-- **Telecom** — Migrated a BFF from Java on OpenShift to Node.js + TypeScript on ECS and Lambda.
-- **Ordo** — Built a staging environment for pre-production testing on GKE with ArgoCD and GitOps.
-- **Hoopla** — Managed 25+ microservices infrastructure and migrated from EC2 to Kubernetes for cost reduction.
-- **Income Tax Calculator** — Built an employee tax forecasting tool with Haskell and Elm.
-- **Hero Motorcycles** — Built an online motorcycle sales system with Elixir, Phoenix, and React.
-- **Aquabyte** — Built an ML pipeline to detect fish health issues, isolated via Docker.
-- **Cardboardit.com** — Built a user story mapping app with Jira/Rally/TFS/Pivotal integrations and real-time sync.
+<Highlights items={[
+  { name: 'Richeta', text: 'Designed and delivered a weekly, three-month Elixir, Phoenix, and LiveView training program for two developers joining a new project.', only: ['full', 'backend'] },
+  { name: 'Hoopla', text: 'Managed infrastructure for 25+ microservices and led a year-long migration from EC2 to Kubernetes, improving elasticity and reducing infrastructure costs by 50%.', only: ['full', 'devops'] },
+  { name: 'Mumuki', text: 'Implemented a JavaScript interpreter that enabled a static code analyzer to run simple code locally.', only: ['backend'] },
+  { name: 'Telecom', text: 'Co-led a 16-developer team migrating a BFF from Java on OpenShift to Node.js and TypeScript on AWS ECS and Lambda.', only: ['full', 'devops', 'backend'] },
+  { name: 'Ordo', text: 'Built a pre-production staging environment on GKE with ArgoCD and GitOps.', only: ['devops'] },
+  { name: 'Income Tax Calculator', text: 'Built an employee tax-forecasting tool with Haskell and Elm.', only: ['backend'] },
+  { name: 'Hero Motorcycles', text: 'Built an online motorcycle sales system with Elixir, Phoenix, and React.', only: ['backend'] },
+]} />
 
-<Tags tags={["Kubernetes", "Elixir", "Haskell", "Ruby on Rails", "TypeScript", "Node.js", "AWS", "GCP", "ArgoCD", "Docker", "Helm", "Terraform"]} />
+<Tags tags={[
+  { tag: 'Kubernetes', not: ['backend'] },
+  { tag: 'Elixir', not: ['devops'] },
+  { tag: 'Haskell', not: ['devops'] },
+  { tag: 'Ruby on Rails', only: ['full'] },
+  'TypeScript',
+  'Node.js',
+  { tag: 'AWS', not: ['backend'] },
+  { tag: 'GCP', not: ['backend'] },
+  { tag: 'ArgoCD', not: ['backend'] },
+  { tag: 'Docker', not: ['backend'] },
+  { tag: 'Helm', not: ['backend'] },
+  { tag: 'Terraform', not: ['backend'] },
+]} />
 
-### Mulesoft Inc.
+<For not={['devops']}>
+
+### MuleSoft Inc.
 
 <EntryMeta role="Software Developer" date="Sep 2015 – Mar 2016" location="Buenos Aires, AR" />
 
-Developed a RESTful API for a CMS with integrations into microservices and the Eclipse IDE.
+Maintained a developer portal for discovering and installing 60+ integrations in a
+generic integration platform.
 
 <Tags tags={["JavaScript", "Node.js", "Express", "AWS", "AngularJS"]} />
+
+</For>
+
+<For only={['full']}>
 
 ### Freelance
 
 <EntryMeta role="Web Developer" date="Apr 2015 – Sep 2015" location="Buenos Aires, AR" />
 
-Built a web-based career counseling application, handling the full project lifecycle.
+Built a web-based career counseling application and implemented hierarchical,
+organization-level authorization for requesting access to integrations across parent
+organizations.
 
 <Tags tags={["Python", "Django", "Ansible", "Nginx", "DigitalOcean"]} />
+
+</For>
+
+<For only={['full']}>
 
 ### Ozono Informatica
 
 <EntryMeta role="IT Support" date="Sep 2014 – Mar 2015" location="Buenos Aires, AR" />
 
-Maintained Windows systems, configured pfSense as a load balancer, managed Xen virtual machines, and containerized on-prem apps.
+Maintained Windows systems, configured pfSense as a load balancer, and managed Xen
+virtual machines. Created Docker images to simplify provisioning Odoo instances for a
+planned hosted offering.
 
 <Tags tags={["Docker", "Linux", "pfSense", "Windows"]} />
+
+</For>
+
+<For only={['full']}>
 
 ### Toteming SA
 
 <EntryMeta role="Developer" date="Jan 2014 – Jul 2014" location="Buenos Aires, AR" />
 
-Developed an event marketing system with RFID wristbands, an Android app, and a web UI.
+Maintained and extended an event marketing system with RFID wristbands, an Android
+app, and a web interface, used at monthly events with about 80 attendees.
 
 <Tags tags={["Java", "Android", "PHP", "Python", "MySQL"]} />
 
+</For>
+
 ## Projects
 
-### PdeP (Paradigmas de Programación) — UTN
+<For not={['devops']}>
+
+### PdeP (Paradigmas de Programación), UTN
 
 <EntryMeta role="Teaching Assistant" date="2025 – Present" location="Buenos Aires, AR" />
 
-Teaching assistant for the Programming Paradigms course at UTN.
+Grade assignments and capstone projects for about 50 students each year, teach
+occasional classes, and designed infrastructure that runs automated acceptance tests
+for every course repository.
 
 ### [PdePreludat](https://github.com/uqbar-project/pdepreludat)
 
 <EntryMeta role="Developer" date="2018 – Present" location="Buenos Aires, AR" />
 
-Alternative Prelude for Haskell with the objective of easing the learning
-curve of functional programming to new students.
+Co-maintain an alternative Haskell Prelude used by thousands of students across
+multiple course sections over several years, with five code contributors and an active
+issue-reporting community.
 
 ### HaskellBA
 
 <EntryMeta role="Organizer & Speaker" date="2017 – Present" location="Buenos Aires, AR" />
 
-Organize and occasionally deliver talks on Haskell and functional programming.
+Organize an annual Haskell meetup that has run since 2017 and draws about 30 attendees
+per event. Coordinated speakers for each event and delivered three talks.
+
+</For>
+
+<For not={['devops']}>
 
 ### ZuriHac 2019
 
@@ -93,24 +198,65 @@ Organize and occasionally deliver talks on Haskell and functional programming.
 Participated in the advanced track workshop given by Well-Typed and attended talks
 at the largest Haskell community event in the world.
 
+</For>
+
+<For not={['devops']}>
+
 ### [Conferer](https://github.com/ludat/conferer)
 
 <EntryMeta role="Developer" date="2019 – Present" />
 
-Open source Haskell library for managing application configuration.
-Features a robust CI pipeline tested against multiple GHC versions.
+Open source Haskell library for managing application configuration, with CI coverage
+across the latest ten GHC releases on Linux, macOS, and Windows.
 
 <Tags tags={["Haskell", "Configuration", "Open Source"]} />
+
+</For>
+
+<For only={['full']}>
 
 ### [Banana Split](https://github.com/ludat/banana-split)
 
 <EntryMeta role="Developer" date="2023 – Present" />
 
-Open source expense-splitting app similar to Splitwise with additional features.
-Deployed on a personal Kubernetes cluster with Helm and ArgoCD, using pgroll for
-zero-downtime database migrations.
+Open source expense-splitting application used by about 20 monthly active users.
+Includes an optimized expense-minimization algorithm and is deployed on a personal
+Kubernetes cluster with Helm and ArgoCD, using pgroll for zero-downtime database
+migrations.
 
 <Tags tags={["Haskell", "Elm", "Postgres", "Kubernetes", "Open Source"]} />
+
+</For>
+
+<For only={['devops']}>
+
+### [Banana Split](https://github.com/ludat/banana-split)
+
+<EntryMeta role="Developer" date="2023 – Present" />
+
+Open source application used by about 20 monthly active users and deployed to a
+personal Kubernetes cluster with Helm and ArgoCD. Uses pgroll for zero-downtime
+PostgreSQL database migrations.
+
+<Tags tags={["Kubernetes", "Helm", "ArgoCD", "Postgres", "Open Source"]} />
+
+</For>
+
+<For only={['backend']}>
+
+### [Banana Split](https://github.com/ludat/banana-split)
+
+<EntryMeta role="Developer" date="2023 – Present" />
+
+Open source expense-splitting application used by about 20 monthly active users and
+built with Haskell, Elm, and Postgres. Includes an optimized expense-minimization
+algorithm and uses pgroll for zero-downtime database migrations.
+
+<Tags tags={["Haskell", "Elm", "Postgres", "Open Source"]} />
+
+</For>
+
+<For only={['full']}>
 
 ### NixOS Configuration
 
@@ -120,37 +266,51 @@ Open source NixOS configuration for my personal systems.
 
 <Tags tags={["Nix", "NixOS", "Open Source"]} />
 
+</For>
+
+<For not={['devops']}>
+
 ## Talks
 
 ### [Megaparsec: what regex want to be when they grow up](https://youtu.be/QnRt76Ml8jI)
 
-<EntryMeta role="Speaker" date="Dic 2025" location="HaskellBA / 10Pines" />
+<EntryMeta role="Speaker" date="Dec 2025" location="HaskellBA / 10Pines" />
 
 Introduction to parser combinators with Megaparsec.
 
+<For not={['devops']}>
+
 ### Functional UIs with Elm
 
-<EntryMeta role="Speaker" date="May 2025" location="PdeP — UTN" />
+<EntryMeta role="Speaker" date="May 2025" location="PdeP, UTN" />
 
 We used functional programming concepts to build user interfaces with Elm.
 
+</For>
+
 ### Haskell in the real world
 
-<EntryMeta role="Speaker" date="Dic 2020" location="PdeP — UTN" />
+<EntryMeta role="Speaker" date="Dec 2020" location="PdeP, UTN" />
 
 We explore a real life example of an app using Haskell with a tax income calculator.
+
+<For not={['devops']}>
 
 ### [Evaluating JavaScript in Haskell](https://youtu.be/ALY6rg_1lq0)
 
 <EntryMeta role="Speaker" date="Feb 2019" location="HaskellBA" />
 
-We go through the implementation of a recursive interpreter for Javascript using Haskell for a NGO.
+We go through the implementation of a recursive interpreter for JavaScript using Haskell for an NGO.
 
 ### [Haskell at the frontend: FRP using reflex](https://youtu.be/GE_VrhA72YI)
 
 <EntryMeta role="Speaker" date="Feb 2018" location="HaskellBA" />
 
 Intro to Functional Reactive Programming using Reflex.
+
+</For>
+
+</For>
 
 ## Education
 
@@ -164,5 +324,5 @@ Intro to Functional Reactive Programming using Reflex.
 
 ## Languages
 
-- **Spanish** — Native
-- **English** — Advanced
+- **Spanish:** Native
+- **English:** Advanced

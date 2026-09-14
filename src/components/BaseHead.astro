@@ -13,12 +13,13 @@ interface Props {
   description: string;
   image?: ImageMetadata;
   alternateUrls?: Record<string, string>;
+  noindex?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const lang = Astro.currentLocale as Lang;
 
-const { title, description, image = FallbackImage, alternateUrls } = Astro.props;
+const { title, description, image = FallbackImage, alternateUrls, noindex = false } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -39,6 +40,8 @@ const { title, description, image = FallbackImage, alternateUrls } = Astro.props
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+{noindex && <meta name="robots" content="noindex, follow" />}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

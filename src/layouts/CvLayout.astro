@@ -1,6 +1,8 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BaseHead from '../components/BaseHead.astro';
 import Navbar from '../components/Navbar.astro';
+import { audienceIds, audienceLabel, currentAudience, FULL } from '../cv/audiences';
 import { useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -11,6 +13,14 @@ interface Props {
 const { title, description } = Astro.props;
 const lang = Astro.currentLocale as Lang;
 const t = useTranslations(lang);
+
+const audience = currentAudience(Astro.params);
+const audienceOptions = [FULL, ...audienceIds].map((id) => ({
+  id,
+  label: audienceLabel(id, lang),
+  href: getRelativeLocaleUrl(lang, id === FULL ? '/cv' : `/cv/${id}`),
+}));
+const audienceLabelText = lang === 'es' ? 'Versión' : 'Version';
 
 const sectionNav = lang === 'es'
   ? [
@@ -42,7 +52,7 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
 
 <html lang={lang} data-theme="dark">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} noindex={audience !== FULL} />
   </head>
   <body>
     <Navbar activePath="/cv" />
@@ -82,6 +92,16 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
           ))}
         </nav>
 
+        <nav class="cv-audience-nav">
+          <div class="cv-nav-label">{audienceLabelText}</div>
+          {audienceOptions.map(o => (
+            <a
+              class:list={["cv-audience-link", { active: o.id === audience }]}
+              href={o.href}
+            >{o.label}</a>
+          ))}
+        </nav>
+
         <div class="cv-spoken-langs">
           <div class="cv-nav-label">{langLabel}</div>
           {spokenLanguages.map(l => (
@@ -103,6 +123,29 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
 </html>
 
 <style>
+  /* ── Tokens ──
+     Type scale and colors for the whole CV, inherited by EntryMeta/Tags too.
+     Tweak sizes here; @media print below restores the tighter print scale. */
+  .cv-layout {
+    --cv-fs-summary: 17px;
+    --cv-fs-body: 15px;
+    --cv-fs-list: 15px;
+    --cv-fs-bullet: 12px;
+    --cv-fs-h3: 20px;
+    --cv-fs-section: 13px;
+    --cv-fs-role: 14px;
+    --cv-fs-meta: 12px;
+    --cv-fs-tag: 11px;
+
+    --cv-text: var(--site-text);
+    --cv-text-muted: var(--site-text-muted);
+    --cv-text-faint: var(--site-text-faint);
+    --cv-accent: var(--site-accent);
+    --cv-accent-dim: var(--site-accent-dim);
+    --cv-bg-surface: var(--site-bg-surface);
+    --cv-border: var(--site-border);
+  }
+
   /* ── Layout ── */
   .cv-layout {
     display: grid;
@@ -210,6 +253,33 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
     border-left-color: var(--site-accent);
   }
 
+  .cv-audience-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cv-audience-link {
+    text-decoration: none;
+    color: var(--site-text-muted);
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 11px;
+    padding: 5px 0 5px 12px;
+    border-left: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: block;
+  }
+
+  .cv-audience-link:hover {
+    color: var(--site-text);
+    border-left-color: var(--site-accent-dim);
+  }
+
+  .cv-audience-link.active {
+    color: var(--site-accent);
+    border-left-color: var(--site-accent);
+  }
+
   .cv-spoken-langs {
     margin-top: auto;
   }
@@ -251,7 +321,7 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
     gap: 16px;
     margin-bottom: 40px;
     margin-top: 80px;
-    font-size: 13px;
+    font-size: var(--cv-fs-section);
     font-family: 'Space Mono', ui-monospace, monospace;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -274,7 +344,7 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
 
   /* Entry org names (h3) */
   .cv-content :global(h3) {
-    font-size: 18px;
+    font-size: var(--cv-fs-h3);
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--site-text);
@@ -299,11 +369,18 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
 
   /* Description paragraphs */
   .cv-content :global(p) {
-    font-size: 14px;
+    font-size: var(--cv-fs-body);
     color: var(--site-text-muted);
     line-height: 1.7;
     text-wrap: pretty;
     margin-bottom: 14px;
+  }
+
+  .cv-content :global(.cv-summary p) {
+    font-size: var(--cv-fs-summary);
+    line-height: 1.65;
+    color: var(--site-text);
+    margin-bottom: 32px;
   }
 
   /* Bullet lists */
@@ -317,7 +394,7 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
   }
 
   .cv-content :global(li) {
-    font-size: 13.5px;
+    font-size: var(--cv-fs-list);
     color: var(--site-text-muted);
     padding-left: 16px;
     position: relative;
@@ -331,7 +408,7 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
     left: 0;
     color: var(--site-accent);
     font-family: 'Space Mono', ui-monospace, monospace;
-    font-size: 11px;
+    font-size: var(--cv-fs-bullet);
     top: 2px;
   }
 
@@ -396,6 +473,7 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
     /* Hide chrome that has no meaning on paper */
     :global(.site-navbar) { display: none; }
     .cv-section-nav { display: none; }
+    .cv-audience-nav { display: none; }
 
     /* Full page width, no centering constraint */
     .cv-layout {
@@ -403,6 +481,19 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
       padding-top: 0;
       min-height: 0;
       max-width: none;
+
+      /* Tighter scale on paper, so the PDF keeps its page count.
+         The summary drops to body size — on paper it reads as an intro
+         paragraph, it doesn't need to be the largest text on the page. */
+      --cv-fs-summary: 13.5px;
+      --cv-fs-body: 13.5px;
+      --cv-fs-list: 13.5px;
+      --cv-fs-bullet: 11px;
+      --cv-fs-h3: 17px;
+      --cv-fs-section: 12px;
+      --cv-fs-role: 12.5px;
+      --cv-fs-meta: 10.5px;
+      --cv-fs-tag: 10px;
     }
 
     .cv-sidebar {
@@ -428,6 +519,10 @@ const navLabel = lang === 'es' ? 'En esta página' : 'On this page';
 
     .cv-content {
       margin-bottom: 0;
+    }
+
+    .cv-content :global(.cv-summary p) {
+      margin-bottom: 16px;
     }
 
     /* Keep section headings attached to first entry below */
