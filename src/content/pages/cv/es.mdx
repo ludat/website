@@ -78,16 +78,26 @@ proveedor de identidad en Rails y clientes en JavaScript, Elm, TypeScript, Rails
 Haskell. Lideré durante cinco años el programa de mentoría para nuevos ingresos, luego
 de participar dos años, con dos camadas anuales de alrededor de cinco personas cada una.
 
+<For only={['full']}>
+
+Proyectos de clientes en los que trabajé:
+
+</For>
+
+<For not={['full']}>
+
 Proyectos seleccionados:
 
+</For>
+
 <Highlights items={[
-  { name: 'Richeta', text: 'Diseñé y di una capacitación semanal de tres meses en Elixir, Phoenix y LiveView para dos desarrolladores que se incorporaban a un proyecto nuevo.', only: ['full', 'backend'] },
-  { name: 'Hoopla', text: 'Gestioné la infraestructura de más de 25 microservicios y lideré una migración de un año de EC2 a Kubernetes, mejorando la elasticidad y reduciendo los costos de infraestructura en un 50%.', only: ['full', 'devops'] },
-  { name: 'Mumuki', text: 'Implementé un intérprete de JavaScript que permitió ejecutar código simple de forma local para un analizador estático.', only: ['backend'] },
-  { name: 'Telecom', text: 'Co-lideré un equipo de 16 desarrolladores que migró un BFF de Java sobre OpenShift a Node.js y TypeScript en AWS ECS y Lambda.', only: ['full', 'devops', 'backend'] },
-  { name: 'Ordo', text: 'Construí un entorno de preproducción en GKE con ArgoCD y GitOps.', only: ['devops'] },
-  { name: 'Calculadora de Ganancias', text: 'Construí una herramienta de proyección de impuestos para empleados con Haskell y Elm.', only: ['backend'] },
-  { name: 'Hero Motorcycles', text: 'Construí un sistema de venta online de motos con Elixir, Phoenix y React.', only: ['backend'] },
+  { name: 'Richeta', text: 'Diseñé y di una capacitación semanal de tres meses en Elixir, Phoenix y LiveView para dos desarrolladores que se incorporaban a un proyecto nuevo.', not: ['devops'] },
+  { name: 'Hoopla', text: 'Gestioné la infraestructura de más de 25 microservicios y lideré una migración de un año de EC2 a Kubernetes, mejorando la elasticidad y reduciendo los costos de infraestructura en un 50%.', not: ['backend'] },
+  { name: 'Mumuki', text: 'Implementé un intérprete de JavaScript que permitió ejecutar código simple de forma local para un analizador estático.', not: ['devops'] },
+  { name: 'Telecom', text: 'Co-lideré un equipo de 16 desarrolladores que migró un BFF de Java sobre OpenShift a Node.js y TypeScript en AWS ECS y Lambda.' },
+  { name: 'Ordo', text: 'Construí un entorno de preproducción en GKE con ArgoCD y GitOps.', not: ['backend'] },
+  { name: 'Calculadora de Ganancias', text: 'Construí una herramienta de proyección de impuestos para empleados con Haskell y Elm.', not: ['devops'] },
+  { name: 'Hero Motorcycles', text: 'Construí un sistema de venta online de motos con Elixir, Phoenix y React.', not: ['devops'] },
 ]} />
 
 <Tags tags={[

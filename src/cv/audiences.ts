@@ -37,7 +37,14 @@ export function currentAudience(params: Record<string, string | undefined>): Aud
   return audience && audience in audiences ? (audience as Audience) : FULL;
 }
 
-/** Shared visibility rule for <For>, <Highlights> and <Tags>. */
+/**
+ * Shared visibility rule for <For>, <Highlights> and <Tags>.
+ *
+ * Prefer `not` for filtering: it narrows the variants while keeping the item on
+ * the full CV, which is meant to be the superset of everything. Reach for `only`
+ * just when a piece of content is exclusive to some variants — an intro
+ * paragraph or an entry rewritten per audience, where the full CV has its own.
+ */
 export function isVisible(
   current: AudienceOrFull,
   only?: readonly AudienceOrFull[],
